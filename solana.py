@@ -28,7 +28,7 @@ def solana():
         print("\n")
     for stake in stake_res:
         print(f"withdrawer key {stake.get('withdrawer')}")
-        print(f"Количество стекйков {stake.get('quantity')} на сумму {stake.get('stake_sum')}")
+        print(f"Количество стейков {stake.get('quantity')} на сумму {stake.get('stake_sum')}")
         print("-"*60)
 
 if __name__ == '__main__':
