@@ -1,1 +1,3 @@
-copy script in your server with solana cli and run python3 solana.py
+# How to use
+- copy script in your server with solana cli 
+- run **python3 solana.py**
