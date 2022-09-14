@@ -18,17 +18,27 @@ def solana():
     for withdrawer in list_withdrawer:
         quantity = 0
         stake_sum = 0
+        activating = 0
+        activationEpoch = 0
         for elem in range(len(sol_list)):
             if withdrawer == sol_list[elem].get('withdrawer'):
                 quantity += 1
-                stake_sum += sol_list[elem].get('delegatedStake')
-        stake_sum = stake_sum / 1000000000
-        stake_res.append({'withdrawer': withdrawer, 'quantity': quantity, 'stake_sum': stake_sum})
+                stake_sum += sol_list[elem].get('accountBalance')
+                if sol_list[elem].get('activatingStake'):
+                    activating += sol_list[elem].get('activatingStake')
+                    activationEpoch = sol_list[elem].get("activationEpoch")
+        activating /= 1000000000
+        stake_sum /= 1000000000
+        stake_res.append({'withdrawer': withdrawer, 'quantity': quantity, 'stake_sum': stake_sum, 'activating': activating, 'activationepoch': activationEpoch})
         stake_res.sort(key=lambda d: d['stake_sum'], reverse=True)
         print("\n")
     for stake in stake_res:
         print(f"withdrawer key {stake.get('withdrawer')}")
-        print(f"Количество стейков {stake.get('quantity')} на сумму {stake.get('stake_sum')}")
+        print(f"Number of steaks {stake.get('quantity')} for the amount {stake.get('stake_sum')}")
+        if stake.get('activating') == 0.0:
+            pass
+        else:
+            print(f"Activating: {stake.get('activating')} on {stake.get('activationepoch')}")
         print("-"*60)
 
 if __name__ == '__main__':
