@@ -16,12 +16,7 @@ def solana():
         list_withdrawer.append(sol_list[elem].get('withdrawer'))
     list_withdrawer = [x for x in list_withdrawer if x not in seen and not seen.add(x)]
     for withdrawer in list_withdrawer:
-        quantity = 0
-        stake_sum = 0
-        activating = 0
-        activationEpoch = 0
-        deactivationEpoch = 0
-        deactivatingStake = 0
+        quantity = stake_sum = activating = activationEpoch = deactivationEpoch = deactivatingStake = 0
         for elem in range(len(sol_list)):
             if withdrawer == sol_list[elem].get('withdrawer'):
                 quantity += 1
